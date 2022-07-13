@@ -59,18 +59,25 @@ export default {
       // 返回上级页面
       this.$router.back()
     },
-    async onSubmit (values) {
+    async onSubmit (users) {
       this.$toast.loading({
         message: '加载中...',
         forbidClick: true
       })
       try {
-        const res = await loginAPI(values)
+        const res = await loginAPI(users)
+        console.log(res)
         const stu = res.data.status
         if (stu === 400) {
           this.$toast.fail('登录失败，请检查账号密码是否错误')
         } else {
+          // this.$state
           this.$toast.success('登录成功')
+          console.log(res.data.body)
+          // 将获取到的后台token数据存储到vuex容器中，并且会调用存入本地存储的方法(this.$store.commit('容器名',获取出来的包含token的对象))
+          this.$store.commit('setUser', res.data.body)
+          //   跳转到首页'/'
+          this.$router.push('/')
         }
       } catch (error) {
         this.$toast.fail('登录失败,请稍后重试')

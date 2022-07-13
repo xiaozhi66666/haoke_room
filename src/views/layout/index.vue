@@ -36,6 +36,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+.hk-layout{
+  .nav-footer{
+    .van-tabbar-item--active{
+      color:#21b97a;
+    }
+  }
+
+}
 
 </style>
