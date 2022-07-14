@@ -9,7 +9,7 @@
               <van-tabbar-item icon="wap-home-o" to="/">首页</van-tabbar-item>
               <van-tabbar-item icon="search" to="/search">找房</van-tabbar-item>
               <van-tabbar-item icon="newspaper-o" to="/news">咨询</van-tabbar-item>
-              <van-tabbar-item icon="contact" to="/my">我的</van-tabbar-item>
+              <van-tabbar-item icon="contact" to="/my" >我的</van-tabbar-item>
           </van-tabbar>
         </div>
         <!-- 底部导航栏E -->
@@ -29,9 +29,13 @@ export default {
   mounted () {
 
   },
+  created () {
 
+  },
+  watch: {
+
+  },
   methods: {
-
   }
 }
 </script>

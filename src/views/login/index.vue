@@ -40,7 +40,8 @@
 
 <script>
 // 导入登录请求方法
-import { loginAPI } from '@/api/user.js'
+import { getLoginAPI } from '@/api/user.js'
+
 export default {
   name: 'LoginIndex',
 
@@ -57,7 +58,7 @@ export default {
   methods: {
     onClickLeft () {
       // 返回上级页面
-      this.$router.back()
+      this.$router.push('/')
     },
     async onSubmit (users) {
       this.$toast.loading({
@@ -65,7 +66,7 @@ export default {
         forbidClick: true
       })
       try {
-        const res = await loginAPI(users)
+        const res = await getLoginAPI(users)
         console.log(res)
         const stu = res.data.status
         if (stu === 400) {
