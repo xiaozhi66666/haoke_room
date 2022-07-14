@@ -67,7 +67,6 @@ export default {
       })
       try {
         const res = await getLoginAPI(users)
-        console.log(res)
         const stu = res.data.status
         if (stu === 400) {
           this.$toast.fail('登录失败，请检查账号密码是否错误')

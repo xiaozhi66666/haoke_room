@@ -1,5 +1,4 @@
 <template>
-<!-- 游客==未登录页面S -->
     <div class="hk-my">
         <!-- 信封区域S===已登录状态 -->
         <div class="title" v-if="user">
@@ -54,7 +53,6 @@
       <!-- 分类导航区域E -->
       <div class="advertise"><img src="http://liufusong.top:8080/img/profile/join.png" alt=""></div>
     </div>
-   <!-- 游客==未登录页面E -->
 </template>
 
 <script>
@@ -107,7 +105,7 @@ export default {
       try {
         const res = await getUserInfo()
         this.info = res.data.body
-        console.log(this.info)
+        // console.log(this.info)
       } catch (error) {
 
       }
