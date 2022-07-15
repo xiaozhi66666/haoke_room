@@ -58,7 +58,7 @@ export default {
   methods: {
     onClickLeft () {
       // 返回上级页面
-      this.$router.push('/')
+      this.$router.back()
     },
     async onSubmit (users) {
       this.$toast.loading({
@@ -67,10 +67,13 @@ export default {
       })
       try {
         const res = await getLoginAPI(users)
+        console.log(res);
         const stu = res.data.status
         if (stu === 400) {
           this.$toast.fail('登录失败，请检查账号密码是否错误')
+          console.log(res);
         } else {
+          console.log(res);
           // this.$state
           this.$toast.success('登录成功')
           console.log(res.data.body)

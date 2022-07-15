@@ -31,18 +31,63 @@
 
       </div>
       <!-- 头部 -->
-
+      <!-- 中间功能分类区域S -->
+      <div class="body">
+        <van-grid :border=false>
+        <van-grid-item text="整租" @click="jumpFn">
+          <div slot="icon" class="item-icon"><img src="~@/assets/img/all.png" alt=""></div>
+        </van-grid-item>
+             <van-grid-item text="合租" @click="jumpFn">
+          <div slot="icon" class="item-icon"><img src="~@/assets/img/each.png" alt=""></div>
+        </van-grid-item>
+             <van-grid-item text="地图找房" >
+          <div slot="icon" class="item-icon"><img src="~@/assets/img/local.png" alt=""></div>
+        </van-grid-item>
+             <van-grid-item text="去出租" >
+          <div slot="icon" class="item-icon"><img src="~@/assets/img/rent.png" alt=""></div>
+        </van-grid-item>
+      </van-grid>
+      </div>
+     <!-- 中间功能分类区域E -->
+      <!-- 租房小组S -->
+      <div class="rent-room">
+        <div class="rent-room-header">
+          <span class="title-left">租房小组</span>
+          <span class="title-right">更多</span>
+      </div>
+        <div class="rent-room-item">
+          <van-grid direction="horizontal" :column-num="2" gutter="10px">
+          <van-grid-item v-for="item in rentRoomList" :key="item.id">
+            <div slot="icon" class="img">
+              <img :src="`http://liufusong.top:8080${item.imgSrc}`" alt="">
+              <div class="text">
+                <span>{{item.desc}}</span>
+                <span>{{item.title}}</span>
+            </div>
+          </div>
+      </van-grid-item>
+          <!-- <van-grid-item icon="photo-o" text="文字" />
+          <van-grid-item icon="photo-o" text="文字" />
+          <van-grid-item icon="photo-o" text="文字" /> -->
+        </van-grid>
+      </div>
+      </div>
+      <!-- 租房小组E -->
+      <!-- 底部图片S -->
+      <div class="foot-img"><img src="~@/assets/img/join.png" alt=""></div>
+      <!-- 底部图片E -->
     </div>
 </template>
 
 <script>
-import { getBannerAPI } from '@/api/home'
+import { getBannerAPI, getRentGroupsAPI } from '@/api/home'
 export default {
   name: 'HaokeRoomIndex',
 
   data () {
     return {
       bannerList: [],
+      rentRoomList: [],
       value: ''
     }
   },
@@ -56,6 +101,10 @@ export default {
       try {
         const res = await getBannerAPI()
         this.bannerList = res.data.body
+        const data = await getRentGroupsAPI()
+        this.rentRoomList = data.data.body
+        console.log(this.rentRoomList);
+        // console.log(data);
       } catch (error) {
         this.$toast.fail('获取数据失败')
       }
@@ -69,6 +118,10 @@ export default {
     selectCity () {
       // 点击下箭头跳转到城市页面
       this.$router.push('/city')
+    },
+    jumpFn () {
+      // 跳转到list页面
+      this.$router.push('/list')
     }
   },
   created () {
@@ -79,6 +132,7 @@ export default {
 
 <style lang="less" scoped>
 .home-container{
+  // 头部样式
   .header{
     // 轮播图样式
     .banner{
@@ -122,6 +176,90 @@ export default {
         height: 100%;
       }
     }
+  }
+  // 中键分类功能区域
+  .body{
+    width: 100%;
+    height: 246px;
+    .van-grid-item{
+
+      .van-grid-item__content{
+        // width: 120px;
+        // height: 100px;
+        border:0;
+      .item-icon{
+        img{
+          width: 120px;
+          height: 120px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+      :deep(.van-grid-item__text){
+        font-size: 28px;
+        color: #333
+      }
+    }
+  }
+  .rent-room{
+    width: 100%;
+    height: 374px;
+    background-color:#f6f5f6;
+    .rent-room-header{
+      padding:0 10px;
+      display:flex;
+      justify-content:space-between ;
+
+    }
+      .title-left{
+        color:#333;
+        font-size: 30px;
+        font-weight:700;
+        margin:30px 0 30px 30px;
+      }
+       .title-right{
+        color: #787d82;
+        font-size: 28px;
+        margin:30px 15px 30px 10px;
+      }
+  }
+  .rent-room-item{
+   :deep(.van-grid-item__content--horizontal){
+        border-radius: 20px;
+        padding-right: 100px;
+            justify-content: unset;
+          height: 120px;
+        .van-grid-item__content{
+          display: inline-block;
+        }
+          .img{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+              margin:0 10px;
+            img{
+              position: relative;
+              width: 100%;
+            }
+            .text{
+              position:absolute;
+              right:-160px;
+              top: 10px;
+              // margin-left: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              font-size: 28px;
+              color: #333;
+            }
+        }
+    }
+  }
+  .foot-img{
+   img{
+    width: 100%;
+   }
   }
 }
 

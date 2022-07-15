@@ -16,6 +16,7 @@ module.exports = {
     'no-useless-escape': 'off',
     'valid-typeof': 'off',
     eqeqeq: 'off',
-    'vue/no-parsing-error': 'off'
+    'vue/no-parsing-error': 'off',
+    semi: 'off'
   }
 }

@@ -1,12 +1,8 @@
 <template>
     <div class="city-container">
         <!-- 头部标题栏S -->
-        <div class="header">
-            <van-nav-bar
-            title="城市列表"
-            left-arrow
-            @click-left="onClickLeft"
-        />
+      <div class="header">
+        <Header @click-left="onClickLeft"></Header>
         </div>
         <!-- 头部标题栏E -->
         <!-- 城市列表展示S -->
@@ -26,28 +22,12 @@
             </div>
             <!-- 热门城市E -->
             <!-- 城市列表E -->
-          <van-index-bar>
-            <van-index-anchor index="A" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-index-anchor index="B" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-             <van-index-anchor index="C" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-             <van-index-anchor index="D" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-             <van-index-anchor index="E" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            </van-index-bar>
+         <van-index-bar  :sticky="false" highlight-color="blue">
+              <van-index-anchor  v-for="(item,index) in firstNameList" :key="index" :index="index">
+              <span >{{item.length == 0 ? '' : index}}</span>
+              <van-cell @click="chooseCity(citem)" v-for="(citem,cindex) in item" :key="cindex" :title="citem"/>
+              </van-index-anchor>
+      </van-index-bar>
             <!-- 城市列表E -->
         </div>
         <!-- 城市列表展示E -->
@@ -55,21 +35,63 @@
 </template>
 
 <script>
+// 导入获取城市列表的请求方法
+import { getCityListAPI } from '@/api/area'
+import pinyin from 'js-pinyin/index.js'
+// 引入头部组件
+import Header from '@/components/Header.vue'
 export default {
   name: 'HaokeRoomIndex',
-
+  components: { Header },
   data () {
     return {
-
+      cityList: [],
+      cityNameList: [],
+      FirstPin: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'],
+      firstNameList: [],
+      nameFirst: []
     }
   },
 
   mounted () {
 
   },
-
+  computed: {
+    computedCityList () {
+      return this.cityList.map(item => item.type)
+    }
+  },
   methods: {
-    getCityList () {}
+    async getCityList () {
+      try {
+        const res = await getCityListAPI(1)
+        this.cityList = res.data.body
+        this.cityList.forEach(item => {
+          this.cityNameList.push(item.label)
+          // console.log((item.short).substring(0, 1))
+        })
+        // console.log(this.cityName)
+        const firstName = {}
+        this.FirstPin.forEach((item) => {
+          firstName[item] = []
+          this.cityNameList.forEach((el) => {
+            const first = pinyin.getFullChars(el).substring(0, 1)
+            this.nameFirst.push(first)
+            if (first == item) {
+              firstName[item].push(el)
+            }
+          })
+          this.firstNameList = firstName
+        })
+        console.log(this.nameFirst);
+      } catch (error) {
+        this.$toast('获取数据失败！')
+      }
+    },
+    onClickLeft () {
+      this.$router.back()
+    }
+
   },
   created () {
     this.getCityList()
@@ -79,18 +101,24 @@ export default {
 
 <style lang="less" scoped>
 .city-container{
-    .header{
-        /deep/.van-nav-bar__content{
+    /deep/.header{
+        .van-nav-bar__content{
             background-color:#21b97a;
-           .van-nav-bar__title{
-            color:#fff;
-            .van-nav-bar__left{
-                .van-icon{
+            position:fixed;
+            width: 100%;
+          .van-nav-bar__left{
+              color:#fff;
+                 .van-icon{
                     color:#fff;
                 }
-            }
+           }
+           .van-nav-bar__title {
+            color:#fff;
            }
         }
+    }
+    .city{
+      padding-top: 92px;
     }
 }
 

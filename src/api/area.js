@@ -2,11 +2,12 @@ import request from '@/utils/request'
 
 /**
  *
- * @returns 获取城市列表数据
+ * @param {城市等级} level
+ * @returns 城市列表
  */
-export const getCityList = (level) => {
+export const getCityListAPI = (level) => {
   return request({
     method: 'GET',
-    url: `/area/city${level}`
+    url: `/area/city?level=${level}`
   })
 }

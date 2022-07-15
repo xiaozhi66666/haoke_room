@@ -12,9 +12,10 @@ const routes = [
   {
     path: '/',
     component: () => import('@/views/layout'),
+    redirect: '/ ',
     children: [
       {
-        path: '/', // 如果路径设置为空，则为默认路径
+        path: '/ ', // 如果路径设置为空，则为默认路径
         // name: 'home',
         component: () => import('@/views/home')
       },
@@ -33,6 +34,10 @@ const routes = [
   }, {
     path: '/city',
     component: () => import('@/views/city')
+  },
+  {
+    path: '/list',
+    component: () => import('@/views/list')
   }
 ]
 
