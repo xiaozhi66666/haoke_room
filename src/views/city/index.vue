@@ -2,7 +2,7 @@
     <div class="city-container">
         <!-- 头部标题栏S -->
       <div class="header">
-        <Header @click-left="onClickLeft"></Header>
+        <Header @click="jump" :title="`城市列表`"></Header>
         </div>
         <!-- 头部标题栏E -->
         <!-- 城市列表展示S -->
@@ -83,13 +83,14 @@ export default {
           })
           this.firstNameList = firstName
         })
-        console.log(this.nameFirst);
+        // console.log(this.nameFirst);
       } catch (error) {
         this.$toast('获取数据失败！')
       }
     },
-    onClickLeft () {
-      this.$router.back()
+    jump () {
+      // 点击触发子组件内的方法，子组件内再触发vant绑定的左箭头的点击事件，跳转回去
+      this.$emit('jump')
     }
 
   },

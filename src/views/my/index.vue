@@ -9,7 +9,7 @@
           </div>
           <div class="letter">
             <div class="user-img">
-              <img :src="info.avatar" alt="">
+              <img :src="`${baseURL}${info.avatar}`" alt="">
             </div>
              <div class="youke-btn">
                <div class="youke">{{info.nickname}}</div>
@@ -71,7 +71,8 @@ export default {
 
   data () {
     return {
-      info: {}
+      info: {},
+      baseURL: ''
     }
   },
   mounted () {
@@ -91,7 +92,7 @@ export default {
       })
         .then(() => {
           // on confirm
-          console.log('确认')
+          // console.log('确认')
           // 确认退出  ==>  清楚登录状态(容器中的user + 本地存储中的TOKEN-USER)
           // 使用this.$store.commit('setUser',null)  this.$store.commit(a,b) ==> a==> 代表要提交到哪一个vuex容器变量 b ===> 代表提交什么数据给这个指定的vuex容器变量
           this.$store.commit('setUser', null)
@@ -104,10 +105,13 @@ export default {
     async loadingLogin () {
       try {
         const res = await getUserInfo()
+        // console.log(res);
+        this.baseURL = res.config.baseURL
         this.info = res.data.body
         // console.log(this.info)
       } catch (error) {
-
+        // console.log(error);
+        this.$toast.fail('登录失败，请稍后重试！')
       }
     }
   }

@@ -16,6 +16,7 @@
             placeholder="请输入账号"
             :rules="[{ required: true, message: '请输入正确账号' }]"
             border
+            autocomplete="off"
         />
         <van-field
             v-model="password"
@@ -23,7 +24,8 @@
             name="password"
             placeholder="请输入密码"
             :rules="[{ required: true, message: '请填写密码' }]"
-             border
+            border
+            autocomplete="off"
         />
     <div style="margin: 16px;">
         <van-button  block type="info" native-type="submit">登录</van-button>
@@ -67,16 +69,16 @@ export default {
       })
       try {
         const res = await getLoginAPI(users)
-        console.log(res);
+        // console.log(res);
         const stu = res.data.status
         if (stu === 400) {
           this.$toast.fail('登录失败，请检查账号密码是否错误')
-          console.log(res);
+          // console.log(res);
         } else {
-          console.log(res);
+          // console.log(res);
           // this.$state
           this.$toast.success('登录成功')
-          console.log(res.data.body)
+          // console.log(res.data.body)
           // 将获取到的后台token数据存储到vuex容器中，并且会调用存入本地存储的方法(this.$store.commit('容器名',获取出来的包含token的对象))
           this.$store.commit('setUser', res.data.body)
           //   跳转到首页'/'

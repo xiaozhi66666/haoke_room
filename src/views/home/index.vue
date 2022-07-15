@@ -12,7 +12,7 @@
          <!-- 轮播图E -->
          <!-- 搜索框S -->
         <div class="search">
-       <van-search
+         <van-search
           v-model="value"
           show-action
           label="杭州"
@@ -103,7 +103,7 @@ export default {
         this.bannerList = res.data.body
         const data = await getRentGroupsAPI()
         this.rentRoomList = data.data.body
-        console.log(this.rentRoomList);
+        // console.log(this.rentRoomList);
         // console.log(data);
       } catch (error) {
         this.$toast.fail('获取数据失败')
@@ -259,6 +259,7 @@ export default {
   .foot-img{
    img{
     width: 100%;
+    height: 100%;
    }
   }
 }

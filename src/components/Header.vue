@@ -3,9 +3,10 @@
         <!-- 头部标题栏S -->
         <div class="header">
             <van-nav-bar
-            title="城市列表"
+            :title="title"
             left-arrow
             @click-left="onClickLeft"
+            @jump="onClickLeft"
         />
         </div>
         <!-- 头部标题栏E -->
@@ -15,7 +16,11 @@
 <script>
 export default {
   name: 'HaokeRoomHeader',
-
+  props: {
+    title: {
+      type: String
+    }
+  },
   data () {
     return {
 
@@ -27,7 +32,10 @@ export default {
   },
 
   methods: {
-
+    // 子组件内再触发vant绑定的左箭头的点击事件，跳转回去
+    onClickLeft () {
+      this.$router.back()
+    }
   }
 };
 </script>
