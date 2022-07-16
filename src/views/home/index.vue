@@ -15,7 +15,7 @@
          <van-search
           v-model="value"
           show-action
-          label="杭州"
+          :label="acCityName"
           placeholder="请输入搜索关键词"
           @search="onSearch"
         >
@@ -126,6 +126,12 @@ export default {
   },
   created () {
     this.getBanners()
+  },
+  computed: {
+    // 定义一个计算属性用来保存用户点击到的哪个城市名
+    acCityName () {
+      return this.$route.query.name || '广州'
+    }
   }
 }
 </script>

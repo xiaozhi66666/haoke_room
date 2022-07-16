@@ -44,7 +44,7 @@ export default {
 /deep/.header{
         .van-nav-bar__content{
             background-color:#21b97a;
-            position:fixed;
+            // position:fixed;
             width: 100%;
           .van-nav-bar__left{
               color:#fff;

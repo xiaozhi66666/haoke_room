@@ -6,6 +6,13 @@
   "description": "好客租房",
   "glyphs": [
     {
+      "icon_id": "5387900",
+      "name": "搜索_o",
+      "font_class": "sousuo_o",
+      "unicode": "eb86",
+      "unicode_decimal": 60294
+    },
+    {
       "icon_id": "4175511",
       "name": "下箭头",
       "font_class": "xiajiantou",

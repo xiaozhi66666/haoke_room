@@ -2,7 +2,7 @@
     <div class="city-container">
         <!-- 头部标题栏S -->
       <div class="header">
-        <Header @click="jump" :title="`城市列表`"></Header>
+        <Header :title="`城市列表`"></Header>
         </div>
         <!-- 头部标题栏E -->
         <!-- 城市列表展示S -->
@@ -10,22 +10,23 @@
             <!-- 当前城市S -->
             <div class="now-city">
             <van-cell-group>
-                    <van-cell title="当前城市" value="#" label="杭州" />
+                    <van-cell title="当前城市" value="#" :label="nowCityName" />
             </van-cell-group>
             </div>
             <!-- 当前城市E -->
             <!-- 热门城市S -->
             <div class="hot-city">
                 <van-cell-group>
-                    <van-cell title="热门城市" value="热门" label="杭州" />
+                  <div class="hot-city-title">热门城市</div>
+                    <van-cell  :value="item.label" v-for="item,index in hotCityList" :key="index" @click="getHotName(item.label)"></van-cell>
             </van-cell-group>
             </div>
             <!-- 热门城市E -->
             <!-- 城市列表E -->
-         <van-index-bar  :sticky="false" highlight-color="blue">
+         <van-index-bar  :sticky="false" highlight-color="#21b97a" class="city-list">
               <van-index-anchor  v-for="(item,index) in firstNameList" :key="index" :index="index">
               <span >{{item.length == 0 ? '' : index}}</span>
-              <van-cell @click="chooseCity(citem)" v-for="(citem,cindex) in item" :key="cindex" :title="citem"/>
+              <van-cell @click="chooseCity(citem)" v-for="(citem,cindex) in item" :key="cindex" :title="citem"  ></van-cell>
               </van-index-anchor>
       </van-index-bar>
             <!-- 城市列表E -->
@@ -36,7 +37,7 @@
 
 <script>
 // 导入获取城市列表的请求方法
-import { getCityListAPI } from '@/api/area'
+import { getCityListAPI, getHotCityListAPI } from '@/api'
 import pinyin from 'js-pinyin/index.js'
 // 引入头部组件
 import Header from '@/components/Header.vue'
@@ -49,7 +50,9 @@ export default {
       cityNameList: [],
       FirstPin: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'],
       firstNameList: [],
-      nameFirst: []
+      nameFirst: [],
+      hotCityList: []
+
     }
   },
 
@@ -59,12 +62,24 @@ export default {
   computed: {
     computedCityList () {
       return this.cityList.map(item => item.type)
+    },
+    // 定义一个计算属性用来保存用户点击到的哪个城市名
+    nowCityName () {
+      return this.$route.query.name || '广州'
+    }
+  },
+  watch: {
+    nowCityName (newVal) {
+      this.nowCityName = newVal
+      console.log(newVal);
+      // return newVal
     }
   },
   methods: {
     async getCityList () {
       try {
         const res = await getCityListAPI(1)
+        // console.log(res);
         this.cityList = res.data.body
         this.cityList.forEach(item => {
           this.cityNameList.push(item.label)
@@ -91,11 +106,34 @@ export default {
     jump () {
       // 点击触发子组件内的方法，子组件内再触发vant绑定的左箭头的点击事件，跳转回去
       this.$emit('jump')
+    },
+    async getHotCityList () {
+      const res = await getHotCityListAPI()
+      this.hotCityList = res.data.body
+      // console.log(this.hotCityList);
+    },
+    getHotName (name) {
+      // console.log(name);
+      this.$router.push({
+        path: '/list',
+        query: {
+          name
+        }
+      })
+    },
+    chooseCity (name) {
+      this.$router.push({
+        path: '/list',
+        query: {
+          name
+        }
+      })
     }
 
   },
   created () {
     this.getCityList()
+    this.getHotCityList()
   }
 }
 </script>
@@ -120,6 +158,16 @@ export default {
     }
     .city{
       padding-top: 92px;
+      .hot-city-title{
+        padding-left: 30px;
+        font-size: 28px;
+        color:#999;
+      }
+      .city-list{
+        :deep(.van-cell){
+            padding-left: 0;
+           }
+      }
     }
 }
 

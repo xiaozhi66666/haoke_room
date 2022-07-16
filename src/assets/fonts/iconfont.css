@@ -1,8 +1,8 @@
 @font-face {
   font-family: "haoke"; /* Project id 3520913 */
-  src: url('iconfont.woff2?t=1657788809948') format('woff2'),
-       url('iconfont.woff?t=1657788809948') format('woff'),
-       url('iconfont.ttf?t=1657788809948') format('truetype');
+  src: url('iconfont.woff2?t=1657971303121') format('woff2'),
+       url('iconfont.woff?t=1657971303121') format('woff'),
+       url('iconfont.ttf?t=1657971303121') format('truetype');
 }
 
 .haoke {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.haoke-sousuo_o:before {
+  content: "\eb86";
 }
 
 .haoke-xiajiantou:before {

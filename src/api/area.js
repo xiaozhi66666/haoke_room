@@ -11,3 +11,21 @@ export const getCityListAPI = (level) => {
     url: `/area/city?level=${level}`
   })
 }
+
+/**
+ * 获取热门城市
+ * @returns Promise
+ */
+export const getHotCityListAPI = () => {
+  return request({
+    method: 'GET',
+    url: '/area/hot'
+  })
+}
+
+export const getCityInfoNameAPI = (name) => {
+  return request({
+    method: 'GET',
+    url: `/area/info?name=${name}`
+  })
+}

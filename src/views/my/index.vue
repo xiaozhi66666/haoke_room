@@ -105,7 +105,7 @@ export default {
     async loadingLogin () {
       try {
         const res = await getUserInfo()
-        // console.log(res);
+        console.log(res);
         this.baseURL = res.config.baseURL
         this.info = res.data.body
         // console.log(this.info)
