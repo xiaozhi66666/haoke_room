@@ -33,3 +33,11 @@ export const getUserInfo = () => request({
 export const getUserCollectAPI = () => request({
   url: '/user/favorites'
 })
+
+/**
+ * 获取用户已发布房源信息列表
+ * @returns Promise
+ */
+export const getUserRentAPI = () => request({
+  url: '/user/houses'
+})

@@ -3,7 +3,7 @@
 <!-- 房源展示项S -->
  <main>
   <div class="house-item" v-for="item,index in houseList" :key="index">
-      <div class="left"><img :src="`http://liufusong.top:8080${item.houseImg}`" alt=""></div>
+      <div class="left"><img :src="`http://liufusong.top:8080${item.houseImg}`" alt="" v-if="item.houseImg"><van-loading type="spinner" v-else/></div>
         <div class="right">
           <h4 class="house-name">{{item.title}}</h4>
           <p class="house-info">{{item.desc}}</p>

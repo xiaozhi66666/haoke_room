@@ -51,6 +51,11 @@ const routes = [
     path: '/collect',
     name: 'collect',
     component: () => import('@/views/mycollect')
+  },
+  {
+    path: '/rent',
+    name: 'rent',
+    component: () => import('@/views/myrent')
   }
 ]
 
