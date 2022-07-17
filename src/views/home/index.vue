@@ -117,11 +117,21 @@ export default {
     },
     selectCity () {
       // 点击下箭头跳转到城市页面
-      this.$router.push('/city')
+      this.$router.push({
+        name: 'city',
+        params: {
+          cname: this.acCityName
+        }
+      })
     },
     jumpFn () {
       // 跳转到list页面
-      this.$router.push('/list')
+      this.$router.push({
+        name: 'list',
+        params: {
+          cname: this.$route.params.cname
+        }
+      })
     }
   },
   created () {
@@ -130,7 +140,7 @@ export default {
   computed: {
     // 定义一个计算属性用来保存用户点击到的哪个城市名
     acCityName () {
-      return this.$route.query.name || '广州'
+      return this.$route.params.cname || '广州'
     }
   }
 }

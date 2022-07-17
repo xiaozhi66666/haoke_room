@@ -18,14 +18,27 @@ export const getCityListAPI = (level) => {
  */
 export const getHotCityListAPI = () => {
   return request({
-    method: 'GET',
     url: '/area/hot'
   })
 }
-
+/**
+ * 获取城市id
+ * @param {String} name 城市名
+ * @returns Promise
+ */
 export const getCityInfoNameAPI = (name) => {
   return request({
-    method: 'GET',
     url: `/area/info?name=${name}`
+  })
+}
+
+/**
+ * 获取指定城市的子集城市(区县)列表
+ * @param {String} id 城市id
+ * @returns  Promise
+ */
+export const getSonCityListAPI = (id) => {
+  return request({
+    url: `/area?id=${id}`
   })
 }

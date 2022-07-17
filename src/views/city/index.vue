@@ -2,7 +2,16 @@
     <div class="city-container">
         <!-- 头部标题栏S -->
       <div class="header">
-        <Header :title="`城市列表`"></Header>
+        <!-- <Header :title="`城市列表`"></Header> -->
+          <!-- 头部标题栏S -->
+        <div class="header">
+            <van-nav-bar
+            title="当前城市"
+            left-arrow
+            @click-left="onClickLeft"
+        />
+        </div>
+        <!-- 头部标题栏E -->
         </div>
         <!-- 头部标题栏E -->
         <!-- 城市列表展示S -->
@@ -10,7 +19,7 @@
             <!-- 当前城市S -->
             <div class="now-city">
             <van-cell-group>
-                    <van-cell title="当前城市" value="#" :label="nowCityName" />
+                    <van-cell title="当前城市" value="#" > <span slot="label">{{cname}}</span> </van-cell>
             </van-cell-group>
             </div>
             <!-- 当前城市E -->
@@ -40,10 +49,10 @@
 import { getCityListAPI, getHotCityListAPI } from '@/api'
 import pinyin from 'js-pinyin/index.js'
 // 引入头部组件
-import Header from '@/components/Header.vue'
+// import Header from '@/components/Header.vue'
 export default {
   name: 'HaokeRoomIndex',
-  components: { Header },
+  // components: { Header },
   data () {
     return {
       cityList: [],
@@ -52,6 +61,7 @@ export default {
       firstNameList: [],
       nameFirst: [],
       hotCityList: []
+      // cname: ''
 
     }
   },
@@ -60,21 +70,20 @@ export default {
 
   },
   computed: {
-    computedCityList () {
-      return this.cityList.map(item => item.type)
-    },
-    // 定义一个计算属性用来保存用户点击到的哪个城市名
-    nowCityName () {
-      return this.$route.query.name || '广州'
+    // computedCityList () {
+    //   return this.cityList.map(item => item.type)
+    // },
+    // 定义一个计算属性用来保存用户点击到的哪个城市名(根据query传递过来的字符进行计算)
+    cname () {
+      return this.$route.params.cname || '北京'
     }
   },
-  watch: {
-    nowCityName (newVal) {
-      this.nowCityName = newVal
-      console.log(newVal);
-      // return newVal
-    }
-  },
+  // watch: {
+  //   cname (newVal) {
+  //     this.cname = newVal
+  //   }
+  // },
+
   methods: {
     async getCityList () {
       try {
@@ -103,10 +112,10 @@ export default {
         this.$toast('获取数据失败！')
       }
     },
-    jump () {
-      // 点击触发子组件内的方法，子组件内再触发vant绑定的左箭头的点击事件，跳转回去
-      this.$emit('jump')
-    },
+    // jump () {
+    //   // 点击触发子组件内的方法，子组件内再触发vant绑定的左箭头的点击事件，跳转回去
+    //   this.$emit('jump')
+    // },
     async getHotCityList () {
       const res = await getHotCityListAPI()
       this.hotCityList = res.data.body
@@ -115,25 +124,30 @@ export default {
     getHotName (name) {
       // console.log(name);
       this.$router.push({
-        path: '/list',
-        query: {
-          name
+        name: 'home',
+        params: {
+          cname: name
         }
       })
     },
     chooseCity (name) {
       this.$router.push({
-        path: '/list',
-        query: {
-          name
+        name: 'home',
+        params: {
+          cname: name
         }
       })
+    },
+    // 子组件内再触发vant绑定的左箭头的点击事件，跳转回去
+    onClickLeft () {
+      this.$router.push('/ ')
     }
 
   },
   created () {
     this.getCityList()
     this.getHotCityList()
+    // this.cname = this.$route.query.name || '广州'
   }
 }
 </script>
@@ -159,15 +173,37 @@ export default {
     .city{
       padding-top: 92px;
       .hot-city-title{
-        padding-left: 30px;
+        // padding-left: 30px;
         font-size: 28px;
         color:#999;
+        padding:20px 0 20px 30px
       }
       .city-list{
         :deep(.van-cell){
             padding-left: 0;
            }
       }
+    }
+    .van-cell__label{
+      height: 100px;
+      color:#333;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+    }
+    .van-cell__title{
+      font-size: 28px;
+      color:#999;
+      span{
+          font-size: 32px;
+          color:#333;
+          // border-bottom: 1px solid #eee;
+              width: 100%;
+    height: 100px;
+    // padding: 0 30px;
+    line-height: 100px;
+      }
+
     }
 }
 
