@@ -2,7 +2,7 @@
     <div>
 <!-- 房源展示项S -->
  <main>
-  <div class="house-item" v-for="item,index in houseList" :key="index">
+  <div class="house-item" v-for="item,index in houseList" :key="index" @click="jump(index)" >
       <div class="left"><img :src="`http://liufusong.top:8080${item.houseImg}`" alt="" v-if="item.houseImg"><van-loading type="spinner" v-else/></div>
         <div class="right">
           <h4 class="house-name">{{item.title}}</h4>
@@ -28,7 +28,7 @@ export default {
 
   data () {
     return {
-
+      code: ''
     };
   },
 
@@ -37,7 +37,17 @@ export default {
   },
 
   methods: {
-
+    jump (index) {
+      // 保存具体点击的房屋的code
+      this.code = this.houseList[index].houseCode
+      // 再跳转时将房屋的code传递过去
+      this.$router.push({
+        name: 'houseinfo',
+        params: {
+          code: this.code
+        }
+      })
+    }
   }
 };
 </script>
