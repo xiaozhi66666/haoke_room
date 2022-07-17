@@ -4,7 +4,7 @@
         <div class="header">
             <van-nav-bar
             :title="title"
-            left-arrow
+            :left-arrow="zjt"
             @click-left="onClickLeft"
             @jump="onClickLeft"
         />
@@ -18,7 +18,12 @@ export default {
   name: 'HaokeRoomHeader',
   props: {
     title: {
-      type: String
+      type: String,
+      default: '标题'
+    },
+    zjt: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -44,7 +49,7 @@ export default {
 /deep/.header{
         .van-nav-bar__content{
             background-color:#21b97a;
-            // position:fixed;
+            position:fixed;
             width: 100%;
           .van-nav-bar__left{
               color:#fff;

@@ -3,7 +3,7 @@ import request from '@/utils/request'
 
 // 配置用户登录请求
 /**
- * @param {data} 用户账号密码信息
+ * @param {Object} data 用户账号密码信息
  * @returns token
  */
 export const getLoginAPI = (data) => request({
@@ -24,4 +24,12 @@ export const getUserInfo = () => request({
   //     // 注意仔细看接口文档Bearer+空格+用户token
   //     Authorization: `Bearer ${store.state.user.token}`, //===> 容器模块下 => 具体容器名 ==> 存储对象 ==> 存储对象中存储的属性名 （token/refreshToken）
   // },
+})
+
+/**
+ * 获取用户收藏列表
+ * @returns Promise
+ */
+export const getUserCollectAPI = () => request({
+  url: '/user/favorites'
 })
