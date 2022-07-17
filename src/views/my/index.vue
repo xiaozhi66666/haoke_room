@@ -38,8 +38,8 @@
 
       <!-- 信封区域E===未登录状态 -->
       <!-- 分类导航区域S -->
-      <van-grid :column-num="3" class="nav-classify" :border=false>
-        <van-grid-item icon="star-o" text="我的收藏" />
+      <van-grid :column-num="3" class="nav-classify" :border=false clickable>
+        <van-grid-item icon="star-o" text="我的收藏" to="/collect"/>
         <van-grid-item icon="wap-home-o" text="我的出租" />
         <van-grid-item icon="clock-o" text="看房记录" />
         <van-grid-item icon="idcard" text="成为房主" />
@@ -105,7 +105,6 @@ export default {
     async loadingLogin () {
       try {
         const res = await getUserInfo()
-        console.log(res);
         this.baseURL = res.config.baseURL
         this.info = res.data.body
         // console.log(this.info)
