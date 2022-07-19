@@ -16,7 +16,6 @@
             placeholder="请输入账号"
             :rules="[{ required: true, message: '请输入正确账号' }]"
             border
-            autocomplete="off"
         />
         <van-field
             v-model="password"

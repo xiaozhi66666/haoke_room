@@ -18,11 +18,11 @@
 
 <script>
 export default {
-  name: 'HaokeRoomHouseItem',
+  name: 'HouseItem',
   props: {
     houseList: {
-      type: Array,
-      require: true
+      type: Array
+      // required: true
     }
   },
 
@@ -38,8 +38,10 @@ export default {
 
   methods: {
     jump (index) {
+      // console.log(22);
       // 保存具体点击的房屋的code
       this.code = this.houseList[index].houseCode
+      console.log(this.code);
       // 再跳转时将房屋的code传递过去
       this.$router.push({
         name: 'houseinfo',
@@ -57,62 +59,64 @@ export default {
   margin:0;
   padding:0;
 }
-main{
-      padding: 0 30px;
-    .house-item{
-      display:flex;
-      padding-top:36px;
-      height: 180px;
-      .left{
-        width: 212px;
-        height: 160px;
-        background-color: #21b97a;
-        img{
-          width: 100%;
-          height: 100%;
-        }
-      }
-       .right{
-        flex:1;
-        padding-left: 24px;
-        h4.house-name{
-          width: 5.93333rem;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow:ellipsis;
-          // width:100%;
-          font-size: 30px;
-          color: #394043;
-        }
-        p.house-info{
-          font-size: 24px;
-          color: #afb2b3;
-          padding-top: 10px;
-        }
-        .house-adress{
-          span{
-              display: inline-block;
-              font-size: 24px;
-              border-radius: 6px;
-              padding: 8px 10px;
-              margin-right: 10px;
-              // margin-bottom:10px;
-              line-height: 24px;
-              color: #39becd;
-              background: #e1f5f8;
+
+  main{
+        padding: 0 30px;
+      .house-item{
+        display:flex;
+        padding-top:36px;
+        height: 180px;
+        .left{
+          width: 212px;
+          height: 160px;
+          background-color: #21b97a;
+          img{
+            width: 100%;
+            height: 100%;
           }
         }
-        .house-price{
-          font-size: 24px;
-          color: #fa5741;
-          span.price{
-            font-size: 32px;
-            font-weight: 700;
-            // padding: 10px 0;
+         .right{
+          flex:1;
+          padding-left: 24px;
+          h4.house-name{
+            width: 5.93333rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            // width:100%;
+            font-size: 30px;
+            color: #394043;
+          }
+          p.house-info{
+            font-size: 24px;
+            color: #afb2b3;
+            padding-top: 10px;
+          }
+          .house-adress{
+            span{
+                display: inline-block;
+                font-size: 24px;
+                border-radius: 6px;
+                padding: 8px 10px;
+                margin-right: 10px;
+                // margin-bottom:10px;
+                line-height: 24px;
+                color: #39becd;
+                background: #e1f5f8;
+            }
+          }
+          .house-price{
+            font-size: 24px;
             color: #fa5741;
+            span.price{
+              font-size: 32px;
+              font-weight: 700;
+              // padding: 10px 0;
+              color: #fa5741;
+            }
           }
         }
       }
-    }
-}
+  }
+
 </style>

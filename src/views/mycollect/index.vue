@@ -37,9 +37,9 @@ export default {
     async getUserCollect () {
       try {
         const res = await getUserCollectAPI()
-        console.log(res);
+        // console.log(res);
         this.houseList = res.data.body
-        console.log(this.houseList)
+        // console.log(this.houseList)
       } catch (error) {
         this.$toast.fail('获取数据失败，请稍后重试！')
       }

@@ -124,8 +124,8 @@ export default {
       const res = await getCityInfoNameAPI(newVal)
       // 获取新的城市id
       this.id = res.data.body.value
-      console.log(this.columns);
-      console.log(this.id);
+      // console.log(this.columns);
+      // console.log(this.id);
       // 获取新的城市列表数据
       const houseRes = await getHouseInfoAPI(this.id)
       // console.log(houseRes);
@@ -193,7 +193,7 @@ export default {
         // console.log(this.sonList);
         // 将对应城市的子级城市名保存起来
         this.sonList.forEach(item => this.columns.push(item.label))
-        console.log(this.columns);
+        // console.log(this.columns);
       } catch (error) {
         this.$toast.fail('获取数据失败，请稍后重试！')
       }
@@ -306,7 +306,7 @@ main{
       .left{
         width: 212px;
         height: 160px;
-        background-color: red;
+        background-color: #21b97a;
         img{
           width: 100%;
           height: 100%;

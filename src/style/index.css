@@ -1,0 +1,10 @@
+/* 防止左右滑动出现留白 */
+*{
+    touch-action:none;
+    touch-action:pan-y;
+}
+html,body{
+    width: 100%;
+    /* overflow: hidden; */
+    box-sizing: border-box;
+}

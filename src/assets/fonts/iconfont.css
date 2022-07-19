@@ -1,8 +1,8 @@
 @font-face {
   font-family: "haoke"; /* Project id 3520913 */
-  src: url('iconfont.woff2?t=1657971303121') format('woff2'),
-       url('iconfont.woff?t=1657971303121') format('woff'),
-       url('iconfont.ttf?t=1657971303121') format('truetype');
+  src: url('iconfont.woff2?t=1658246789697') format('woff2'),
+       url('iconfont.woff?t=1658246789697') format('woff'),
+       url('iconfont.ttf?t=1658246789697') format('truetype');
 }
 
 .haoke {
@@ -11,6 +11,58 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.haoke-shafa:before {
+  content: "\e6c6";
+}
+
+.haoke-reshuiqi:before {
+  content: "\e645";
+}
+
+.haoke-shoucang_shixin:before {
+  content: "\eca6";
+}
+
+.haoke-collection:before {
+  content: "\e704";
+}
+
+.haoke-shimingrenzheng:before {
+  content: "\e65c";
+}
+
+.haoke-kuandai:before {
+  content: "\e6ba";
+}
+
+.haoke-nuanqi:before {
+  content: "\e90d";
+}
+
+.haoke-dianshi:before {
+  content: "\e8ba";
+}
+
+.haoke-xiyiji:before {
+  content: "\e67d";
+}
+
+.haoke-kongdiao:before {
+  content: "\e65b";
+}
+
+.haoke-meiqitianranqi:before {
+  content: "\e60e";
+}
+
+.haoke-bingxiang:before {
+  content: "\e64d";
+}
+
+.haoke-yigui:before {
+  content: "\e60a";
 }
 
 .haoke-sousuo_o:before {

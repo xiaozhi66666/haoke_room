@@ -9,3 +9,14 @@ export const getHouseInfoAPI = (id) => {
     url: `/houses?cityId=${id}`
   })
 }
+
+/**
+ * 查询房屋具体信息
+ * @param {Number} code 房屋的具体code值
+ * @returns  Promise
+ */
+export const getHouseFullInfoAPI = (code) => {
+  return request({
+    url: `/houses/${code}`
+  })
+}

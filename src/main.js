@@ -8,7 +8,7 @@ import 'amfe-flexible'
 import '@/assets/fonts/iconfont.css'
 // 全局引入vant组件库
 import Vant from 'vant'
-
+import '@/style/index.css'
 import 'vant/lib/index.css'
 //
 Vue.use(Vant)
