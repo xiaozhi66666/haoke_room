@@ -17,6 +17,6 @@ module.exports = {
     'valid-typeof': 'off',
     eqeqeq: 'off',
     'vue/no-parsing-error': 'off',
-    semi: 'off',
+    semi: 'off'
   }
 }

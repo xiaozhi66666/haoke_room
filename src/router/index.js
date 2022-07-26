@@ -22,10 +22,9 @@ const routes = [
         component: () => import('@/views/home')
       },
       {
-        path: 'search',
-        name: 'search',
-        // component: () => import('@/views/search'),
-        redirect: '/list'
+        path: '/list',
+        name: 'list',
+        component: () => import('@/views/list')
       },
       {
         path: 'news',
@@ -61,6 +60,16 @@ const routes = [
     path: '/houseinfo',
     name: 'houseinfo',
     component: () => import('@/views/houseinfo')
+  },
+  {
+    path: '/publish',
+    name: 'publish',
+    component: () => import('@/views/publishhouse')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search')
   }
 ]
 

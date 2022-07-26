@@ -39,7 +39,7 @@ export default {
         const res = await getUserCollectAPI()
         // console.log(res);
         this.houseList = res.data.body
-        // console.log(this.houseList)
+        console.log(this.houseList)
       } catch (error) {
         this.$toast.fail('获取数据失败，请稍后重试！')
       }
